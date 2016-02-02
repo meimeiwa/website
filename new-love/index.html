@@ -118,9 +118,9 @@ $(document).ready(function () {
 
   var ImgCount = $('.load').length; //取得图片的个数
   $('.load').each(function () {
-    var str = 'dsgsg'; //请忽略,让图片加随机随机数,视为模拟未曾下载过的图片
+    //var str = 'dsgsg'; //请忽略,让图片加随机随机数,视为模拟未曾下载过的图片
     var url = $(this).attr("src");
-    $(this).attr("src", url + "?" + str);
+    $(this).attr("src", url);
 
     function ImageLoading() {
       msg = "Image ID : " + this.id + "....done";

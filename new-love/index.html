@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,height=device-height">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="full-screen" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <meta name="description" content="mes,每实,蛋糕,北京蛋糕">
+    <title>每实--遇见美好</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/touch.js"></script>
+
+    <script type="text/javascript">
+      var bod = document.documentElement;
+      //alert(document.documentElement.clientWidth);
+      bod.style.height = document.documentElement.clientHeight+'px';
+
+      (function (doc, win) {
+        var docEl = doc.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+          recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            console.log(clientWidth);
+
+            if (!clientWidth) return;
+            docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+          };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+      })(document, window);
+
+    </script>
+</head>
+<body>
+    <div class="loading"><div class="circle"></div></div>
+    <div class="main">
+      <div class="h-page1 h-page-item">
+        <img src="img/love-1-title.png" class="title1" />
+        <div class="click-area tl-c">
+          <img src="img/gif.gif" class="page1-hand" />
+          <img src="img/font.png" class="page1-font" />
+        </div>
+        <img src="img/H5-1.jpg" class="h1-big-bg h1-big-bg1 load" id="begin" />
+      </div>
+
+      <div class="h-page2 h-page-item visiblehide">
+        <img src="img/H5-1-2.jpg" class="h1-big-bg h1-big-bg2 load" style="z-index:8" />
+
+        <img src="img/H5-1-3.jpg" class="h1-big-bg h1-big-bg3 load" style="z-index:7" />
+
+        <img src="img/H5-1-4.jpg" class="h1-big-bg h1-big-bg4 load" style="z-index:6" />
+
+        <img src="img/H5-1-5.jpg" class="h1-big-bg h1-big-bg5 load" style="z-index:5" />
+        <img src="img/H5-1-5.jpg" class="h1-big-bg" style="z-index:5" />
+      </div>
+
+      <div class="h-page3 h-page-item visiblehide">
+        <img src="img/title3.png" class="title3" />
+        <img src="img/H5-3.jpg" class="h1-big-bg h1-big-bg6 load" style="z-index:5" />
+        <div class="bai-quan"><img src="img/bai-quan.png" class="click-ico" /></div>
+        <img src="img/font2.png" class="h-3-font" />
+      </div>
+
+    </div>
+
+    <div class="global ease">
+<!--<div class="global">-->
+      <div class="screen">
+        <!-- page 1 /S -->
+        <div class="layout h-page4" id="layout_1">
+
+          <div class="inner">
+
+              <img src="img/H5-3.jpg" class="h1-big-bg" style="z-index:5" />
+              <img src="img/H5-4.jpg" class="h1-big-bg h1-big-bg-page4 load" />
+              <img src="img/title4.png" class="page4-title" />
+              <img src="img/gongyi1.png" class="gongyi one load" />
+              <img src="img/gongyi2.png" class="gongyi two load"/>
+              <img src="img/gongyi3.png" class="gongyi three load"/>
+              <img src="img/gongyi4.png" class="gongyi four load"/>
+              <div class="show-turn"><em class="turn-ico"></em></div>
+
+
+          </div>
+
+        </div>
+
+        <div class="layout h-page5" id="layout_2">
+
+          <div class="inner">
+
+            <a href="http://www.baidu.com"><img src="img/h5-5-font.png" class="h5-font" /></a>
+            <img src="img/logo.png" class="logo" />
+            <img src="img/H5-5-bg.jpg" class="h1-big-bg h1-big-bg-page5 load" />
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+</body>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+  var ImgCount = $('.load').length; //取得图片的个数
+  $('.load').each(function () {
+    var str = 'dsgsg'; //请忽略,让图片加随机随机数,视为模拟未曾下载过的图片
+    var url = $(this).attr("src");
+    $(this).attr("src", url + "?" + str);
+
+    function ImageLoading() {
+      msg = "Image ID : " + this.id + "....done";
+      //console.log(msg);
+
+      //$(this).fadeIn(2000);
+      ImgCount--;
+      if (ImgCount === 0) {
+        console.log("All images Loaded..");
+        $('.loading').hide();
+        $('.h-page1').addClass('show');
+      }
+    }
+
+    if ($(this).complete) {
+      imageLoaded.call(this);
+    } else {
+      $(this).one('load', ImageLoading);
+    }
+  });
+
+
+  // $('.h-page1').addClass('show');
+  $('#begin').bind('click',function(){
+    $('.h-page1').addClass('end');
+    //$(this).hide();
+    $('.h-page2').removeClass("visiblehide").addClass("show");
+    $('.h1-big-bg5').bind('webkitAnimationEnd',function(){
+      //$('.h-page2').addClass('end');
+      $('.h-page3').removeClass("visiblehide").addClass("show");
+
+    });
+  });
+
+  $('.click-ico').bind('click',function(){
+    $('.main').addClass('visiblehide');
+    $('.h-page4').addClass('show');
+    $('.h-page-item').addClass('visiblehide').removeClass('show').removeClass('end');
+    $('.h-page1').removeClass('visiblehide').addClass('show');
+
+  });
+
+  var Layout = {
+
+      page: function (i, _h){
+          $(".global").css({ "-webkit-transform": "translate3d(0px, -" + _h * i +"px, 0px)" });
+          $(".layout .inner").removeClass("animate");
+          //$(".layout").removeClass("show");
+
+          $("#layout_" + (i + 1)).find(".inner").addClass("animate");
+          //$("#layout_" + (i + 1)).addClass("show");
+      },
+      swipe: function(_h, _len){
+          var _this = this;
+
+          $(".layout").each(function(index, obj){
+
+          $(obj).on("swipeUp", function(){
+
+              console.log('1:'+index);
+              //alert(0);
+              if(index==-1 || index==1){
+                $('.main').removeClass('visiblehide');
+                $(".layout").removeClass('show');
+                //console.log('jinyongUp');
+              }
+
+              if(index !=1){
+                $("#layout_2").addClass('show');
+              }
+              index = index < (_len - 1) ? index : -1;
+              _this.page(index + 1, _h);
+
+
+
+          }).on("swipeDown", function(){
+              console.log('2:'+index);
+              if(index==-1 || index ==1){
+                $('.main').removeClass('visiblehide');
+                $(".layout").removeClass('show');
+                //console.log('jinyongDown');
+              }
+              index = index == -1 ? _len - 1 : index;
+              _this.page(index - 1, _h);
+
+
+
+          });
+
+          });
+      },
+      init: function(){
+          var _this = this,
+              _w = $(window).width(),
+              _h = $(window).height(),
+              _len = $(".layout").length;
+
+          $(".global").width( _w ).height( _h * _len ).addClass("ease");
+          $(".screen").width( _w ).height( _h * _len );
+          $(".layout").width( _w ).height( _h );
+
+          _this.page(0, _h);
+          _this.swipe(_h, _len);
+
+          //$("#layout_1").removeClass('show');
+
+      }
+  };
+
+  Layout.init();
+
+});
+</script>
+</html>

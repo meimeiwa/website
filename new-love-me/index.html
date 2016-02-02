@@ -10,11 +10,8 @@
     <meta name="format-detection" content="address=no">
     <meta name="description" content="mes,每实,蛋糕,北京蛋糕">
     <title>每实--遇见美好</title>
-    <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-
-    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
     <script type="text/javascript" src="js/touch.js"></script>
 
     <script type="text/javascript">
@@ -27,7 +24,7 @@
           resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
           recalc = function () {
             var clientWidth = docEl.clientWidth;
-            console.log(clientWidth);
+            //console.log(clientWidth);
 
             if (!clientWidth) return;
             docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
@@ -46,8 +43,8 @@
     <div class="main">
       <div class="h-page1 h-page-item">
         <img src="img/love-1-title.png" class="title1" />
-        <div class="click-area tl-c">
-          <img src="img/gif.gif" class="page1-hand" />
+        <div class="click-area tl-c" id="handClick">
+          <img src="img/hand.png" class="page1-hand" />
           <img src="img/font.png" class="page1-font" />
         </div>
         <img src="img/h5-1.jpg" class="h1-big-bg h1-big-bg1 load" id="begin" />
@@ -119,9 +116,9 @@ $(document).ready(function () {
 
   var ImgCount = $('.load').length; //取得图片的个数
   $('.load').each(function () {
-    //var str = 'dsgsg'; //请忽略,让图片加随机随机数,视为模拟未曾下载过的图片
+    var str = 'dsgsg'; //请忽略,让图片加随机随机数,视为模拟未曾下载过的图片
     var url = $(this).attr("src");
-    $(this).attr("src", url);
+    $(this).attr("src", url+'?'+str);
 
     function ImageLoading() {
       msg = "Image ID : " + this.id + "....done";
@@ -130,7 +127,7 @@ $(document).ready(function () {
       //$(this).fadeIn(2000);
       ImgCount--;
       if (ImgCount === 0) {
-        console.log("All images Loaded..");
+        //console.log("All images Loaded..");
         $('.loading').hide();
         $('.h-page1').addClass('show');
       }
@@ -143,24 +140,29 @@ $(document).ready(function () {
     }
   });
 
-
   // $('.h-page1').addClass('show');
-  $('#begin').bind('click',function(){
+
+  $('#handClick, #begin').bind('click',function(){
+    clickFunc();
+  });
+
+  var clickFunc =function(){
     $('.h-page1').addClass('end');
     //$(this).hide();
     $('.h-page2').removeClass("visiblehide").addClass("show");
-    $('.h1-big-bg5').bind('webkitAnimationEnd',function(){
+    $('.h1-big-bg5').bind('webkitAnimationEnd animationend',function(){
       //$('.h-page2').addClass('end');
       $('.h-page3').removeClass("visiblehide").addClass("show");
 
     });
-  });
+
+  };
 
   $('.click-ico').bind('click',function(){
     $('.main').addClass('visiblehide');
     $('.h-page4').addClass('show');
     $('.h-page-item').addClass('visiblehide').removeClass('show').removeClass('end');
-    $('.h-page1').removeClass('visiblehide').addClass('show');
+
 
   });
 
@@ -181,10 +183,11 @@ $(document).ready(function () {
 
           $(obj).on("swipeUp", function(){
 
-              console.log('1:'+index);
+              //console.log('1:'+index);
               //alert(0);
               if(index==-1 || index==1){
                 $('.main').removeClass('visiblehide');
+                $('.h-page1').removeClass('visiblehide').addClass('show');
                 $(".layout").removeClass('show');
                 //console.log('jinyongUp');
               }
@@ -198,9 +201,10 @@ $(document).ready(function () {
 
 
           }).on("swipeDown", function(){
-              console.log('2:'+index);
+              //console.log('2:'+index);
               if(index==-1 || index ==1){
                 $('.main').removeClass('visiblehide');
+                $('.h-page1').removeClass('visiblehide').addClass('show');
                 $(".layout").removeClass('show');
                 //console.log('jinyongDown');
               }
